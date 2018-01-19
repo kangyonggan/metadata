@@ -40,7 +40,7 @@
 <table id="user-table" class="table table-striped table-bordered table-hover">
     <thead>
     <tr>
-        <th>手机号</th>
+        <th>用户名</th>
         <th>真实姓名</th>
         <th>电子邮箱</th>
         <th>逻辑删除</th>

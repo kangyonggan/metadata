@@ -158,16 +158,22 @@ VALUES
   ('SYSTEM', '系统', 'DASHBOARD', 'system', 1, 'menu-icon fa fa-cogs'),
   ('SYSTEM_USER', '用户管理', 'SYSTEM', 'system/user', 0, ''),
   ('SYSTEM_ROLE', '角色管理', 'SYSTEM', 'system/role', 1, ''),
-  ('SYSTEM_MENU', '菜单管理', 'SYSTEM', 'system/menu', 2, '');
+  ('SYSTEM_MENU', '菜单管理', 'SYSTEM', 'system/menu', 2, ''),
 
--- ----------------------------
---  data for user_role
--- ----------------------------
-INSERT INTO user_role
+  ('METADATA', '元数据', 'DASHBOARD', 'metadata', 2, 'menu-icon fa fa-book'),
+  ('METADATA_MANAGER', '元数据维护', 'METADATA', 'metadata/manager', 0, '');
+
+  -- ----------------------------
+  --  data for user_role
+  -- ----------------------------
+  INSERT INTO user_role
 VALUES
   ('admin', 'ROLE_ADMIN');
 
 -- ----------------------------
 --  data for role_menu
 -- ----------------------------
-INSERT INTO role_menu SELECT 'ROLE_ADMIN', code FROM menu;
+INSERT INTO role_menu SELECT
+                        'ROLE_ADMIN',
+                        code
+                      FROM menu;
