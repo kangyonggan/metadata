@@ -1,0 +1,37 @@
+.loading {
+    margin-left: 15px;
+}
+
+.error {
+    color: red;
+}
+
+.empty {
+    padding: 40px 0px;
+    font-size: 14px;
+    text-align: center;
+}
+
+input.disabled {
+    color: #fff !important;
+}
+
+input[readonly].readonly {
+    background: #fff !important;
+    cursor: pointer !important;
+}
+
+textarea[readonly].readonly {
+    background: #fff !important;
+    cursor: pointer !important;
+}
+
+.page-info {
+    color: #000 !important;
+    background: #fff !important;
+    cursor: default;
+}
+
+.page-info:hover {
+    background: #fff !important;
+}

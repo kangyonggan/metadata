@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="300">
+    <Properties>
+        <Property name="log4j2.home">~/logs/metadata</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t %logger{36}:%L] - %msg%n"/>
+        </Console>
+
+        <RollingRandomAccessFile name="AllFile" fileName="${log4j2.home}/all.log"
+                                 filePattern="${log4j2.home}/all-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t %logger{36}:%L] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="500 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+            <Filters>
+                <ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="ErrorFile" fileName="${log4j2.home}/error.log"
+                                 filePattern="${log4j2.home}/error-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t %logger{36}:%L] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="500 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+            <Filters>
+                <ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
+
+        <Async name="AsyncAll" includeLocation="true">
+            <AppenderRef ref="AllFile"/>
+        </Async>
+
+        <Async name="AsyncError" includeLocation="true">
+            <AppenderRef ref="ErrorFile"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.kangyonggan.metadata.mapper" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AsyncAll"></AppenderRef>
+            <AppenderRef ref="AsyncError"></AppenderRef>
+        </Logger>
+
+        <Root level="info" additivity="true">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AsyncAll"/>
+            <AppenderRef ref="AsyncError"/>
+        </Root>
+    </Loggers>
+</Configuration>

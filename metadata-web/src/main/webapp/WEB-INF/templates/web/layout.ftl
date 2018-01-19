@@ -1,0 +1,1 @@
+<@extends name="../layout.ftl"/>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!--spring公共配置-->
+    <import resource="applicationContext.xml"/>
+    <!--配置数据源-->
+    <import resource="applicationContext-datasource.xml"/>
+    <!--配置线程池-->
+    <import resource="applicationContext-pool.xml"/>
+    <!--redis缓存-->
+    <import resource="applicationContext-redis.xml"/>
+    <!--Freemarker模板-->
+    <import resource="applicationContext-freemarker.xml"/>
+    <!--shiro权限控制-->
+    <import resource="applicationContext-shiro.xml"/>
+
+</beans>

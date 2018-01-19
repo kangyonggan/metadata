@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 对在此配置文件下的所有cache 进行全局性开/关设置。 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 全局性设置懒加载。如果设为‘false’，则所有相关联的都会被初始化加载。 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 允许和不允许单条语句返回多个数据集（取决于驱动需求） -->
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <!-- 使用列标签代替列名称。不同的驱动器有不同的作法。参考一下驱动器文档，或者用这两个不同的选项进行测试一下。 -->
+        <setting name="useColumnLabel" value="true"/>
+        <!-- 配置和设定执行器，SIMPLE 执行器执行其它语句。REUSE 执行器可能重复使用prepared statements 语句，BATCH执行器可以重复执行语句和批量更新。 -->
+        <setting name="defaultExecutorType" value="REUSE"/>
+        <!-- 设置一个时限，以决定让驱动器等待数据库回应的多长时间为超时 -->
+        <setting name="defaultStatementTimeout" value="25000"/>
+        <!-- 映射AA_BB至aaBb驼峰 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--使用log4j2输出日志-->
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
+
+</configuration>

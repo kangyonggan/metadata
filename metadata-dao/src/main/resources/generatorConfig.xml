@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="sqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!--base mapper-->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.kangyonggan.metadata.mapper.MyMapper"/>
+        </plugin>
+
+        <!--serialize plugin-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <!--lombok plugin-->
+        <plugin type="com.kangyonggan.metadata.plugin.LombokPlugin"/>
+
+        <!--jdbc driver-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/metadata"
+                        userId="root" password="123456"/>
+
+        <!--TableName.java-->
+        <javaModelGenerator targetPackage="com.kangyonggan.metadata.model"
+                            targetProject="../metadata-model/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--TableNameMapper.xml-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--TableNameMapper.java-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.kangyonggan.metadata.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--table name-->
+        <table tableName="table_name">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

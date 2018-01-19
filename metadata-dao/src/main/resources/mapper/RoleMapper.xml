@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kangyonggan.metadata.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.kangyonggan.metadata.model.Role">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+        <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <select id="selectRolesByUsername" resultMap="BaseResultMap">
+        SELECT r.*
+        FROM role r, user_role ur
+        <where>
+            r.code = ur.role_code
+            AND ur.username = #{username}
+            AND r.is_deleted = 0
+            ORDER BY r.id DESC
+        </where>
+    </select>
+
+    <delete id="deleteRoleMenus">
+        DELETE FROM role_menu WHERE role_code = #{code}
+    </delete>
+
+    <delete id="deleteAllRolesByUsername">
+        DELETE FROM user_role
+        <where>
+            username = #{username}
+        </where>
+    </delete>
+
+    <insert id="insertRoleMenus">
+        INSERT INTO role_menu (role_code, menu_code) VALUES
+        <foreach collection="menuCodes" item="menuCode" separator=",">
+            (
+            #{code}, #{menuCode}
+            )
+        </foreach>
+    </insert>
+</mapper>
