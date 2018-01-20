@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,6 +42,7 @@ public class WordServiceImpl extends BaseService<Word> implements WordService {
     @Override
     @Log
     public void saveWord(Word word) {
+
         myMapper.insertSelective(word);
     }
 
@@ -63,5 +65,20 @@ public class WordServiceImpl extends BaseService<Word> implements WordService {
         word.setName(name);
 
         return super.exists(word);
+    }
+
+    @Override
+    @Log
+    public List<Word> findWordsByNames(List<String> names) {
+        List<Word> words = new ArrayList();
+        for (String name : names) {
+            Word word = new Word();
+            word.setName(name);
+
+            word = myMapper.selectOne(word);
+            words.add(word);
+        }
+
+        return words;
     }
 }

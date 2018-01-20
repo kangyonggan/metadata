@@ -37,7 +37,7 @@ public class Dictionary implements Serializable {
     private String categoryName;
 
     /**
-     * 类型名称
+     * 类型长度
      */
     private Integer length;
 

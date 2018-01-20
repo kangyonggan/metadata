@@ -173,7 +173,7 @@ CREATE TABLE dictionary
   category_name VARCHAR(32)                           NOT NULL
   COMMENT '类型名称',
   length        INTEGER                               NOT NULL                DEFAULT 0
-  COMMENT '类型名称',
+  COMMENT '类型长度',
   can_empty     TINYINT                               NOT NULL                DEFAULT 0
   COMMENT '是否允许为空',
   default_value VARCHAR(64)                           NOT NULL                DEFAULT ''
@@ -298,4 +298,11 @@ VALUES
   ('006', '日期限', 'TIMESTAMP', 'MySQL'),
   ('007', '大文本', 'LONGTEXT', 'MySQL');
 
+-- ----------------------------
+--  data for dictionary
+-- ----------------------------
+INSERT INTO dictionary
+(name, value, category_code, category_name, length)
+  VALUE
+  ('用户姓名', 'user_name', '001', '可变字符型', 32);
 

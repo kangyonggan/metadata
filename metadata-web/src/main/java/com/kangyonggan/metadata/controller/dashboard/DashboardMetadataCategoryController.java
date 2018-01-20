@@ -142,4 +142,18 @@ public class DashboardMetadataCategoryController extends BaseController {
         return getPathTableTr();
     }
 
+    /**
+     * 编辑类型
+     *
+     * @param code
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{code:[\\w]+}/detail", method = RequestMethod.GET)
+    @RequiresPermissions("METADATA_DICTIONARY")
+    public String create(@PathVariable("code") String code, Model model) {
+        model.addAttribute("category", categoryService.findCategoryByCode(code));
+        return "dashboard/metadata/dictionary/category-modal";
+    }
+
 }

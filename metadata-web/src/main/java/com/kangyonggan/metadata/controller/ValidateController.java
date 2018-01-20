@@ -31,6 +31,9 @@ public class ValidateController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private DictionaryService dictionaryService;
+
     /**
      * 校验用户名是否可用
      *
@@ -120,6 +123,24 @@ public class ValidateController {
         }
 
         return !categoryService.existsCategoryCode(code);
+    }
+
+    /**
+     * 校验字典名称是否可用
+     *
+     * @param name
+     * @param oldName
+     * @return
+     */
+    @RequestMapping(value = "dictionary", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean validateDictionaryName(@RequestParam("name") String name,
+                                        @RequestParam(value = "oldName", required = false, defaultValue = "") String oldName) {
+        if (name.equals(oldName)) {
+            return true;
+        }
+
+        return !dictionaryService.existsDictionaryName(name);
     }
 
 }

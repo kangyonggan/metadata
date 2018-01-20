@@ -49,4 +49,12 @@ public interface WordService {
      * @return
      */
     boolean existsWordName(String name);
+
+    /**
+     * 查找字根
+     *
+     * @param names
+     * @return
+     */
+    List<Word> findWordsByNames(List<String> names);
 }

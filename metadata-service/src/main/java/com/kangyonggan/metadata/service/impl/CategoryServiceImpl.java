@@ -69,4 +69,23 @@ public class CategoryServiceImpl extends BaseService<Category> implements Catego
 
         return super.exists(category);
     }
+
+    @Override
+    public List<Category> findAllCategories() {
+        Example example = new Example(Category.class);
+
+        example.createCriteria().andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+        example.setOrderByClause("id desc");
+
+        return myMapper.selectByExample(example);
+    }
+
+    @Override
+    @Log
+    public Category findCategoryByCode(String categoryCode) {
+        Category category = new Category();
+        category.setCode(categoryCode);
+
+        return myMapper.selectOne(category);
+    }
 }

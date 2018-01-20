@@ -152,6 +152,10 @@
             <groupId>com.kangyonggan</groupId>
             <artifactId>extra-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.huaban</groupId>
+            <artifactId>jieba-analysis</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

@@ -82,6 +82,7 @@
         <commons-net.version>3.5</commons-net.version>
         <lombok.version>1.16.8</lombok.version>
         <extra.version>2.0.4</extra.version>
+        <jieba.version>1.0.2</jieba.version>
     </properties>
 
     <build>
@@ -406,6 +407,11 @@
                 <groupId>com.kangyonggan</groupId>
                 <artifactId>extra-core</artifactId>
                 <version>${extra.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.huaban</groupId>
+                <artifactId>jieba-analysis</artifactId>
+                <version>${jieba.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

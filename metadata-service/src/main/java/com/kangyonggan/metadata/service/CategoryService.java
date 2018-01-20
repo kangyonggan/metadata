@@ -51,4 +51,19 @@ public interface CategoryService {
      * @return
      */
     boolean existsCategoryCode(String code);
+
+    /**
+     * 查找所有类型
+     *
+     * @return
+     */
+    List<Category> findAllCategories();
+
+    /**
+     * 查找类型
+     *
+     * @param categoryCode
+     * @return
+     */
+    Category findCategoryByCode(String categoryCode);
 }
