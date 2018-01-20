@@ -129,6 +129,95 @@ CREATE TABLE role_menu
 )
   COMMENT '角色菜单表';
 
+-- ----------------------------
+--  Table structure for word
+-- ----------------------------
+DROP TABLE
+IF EXISTS word;
+
+CREATE TABLE word
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  name         VARCHAR(10)                           NOT NULL
+  COMMENT '字根名称',
+  value        VARCHAR(32)                           NOT NULL
+  COMMENT '字根的值',
+  is_deleted   TINYINT                               NOT NULL                DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '字根表';
+CREATE UNIQUE INDEX name_UNIQUE
+  ON word (name);
+
+-- ----------------------------
+--  Table structure for dictionary
+-- ----------------------------
+DROP TABLE
+IF EXISTS dictionary;
+
+CREATE TABLE dictionary
+(
+  id            BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  name          VARCHAR(10)                           NOT NULL
+  COMMENT '字典名称',
+  value         VARCHAR(32)                           NOT NULL
+  COMMENT '字典的值',
+  category_code VARCHAR(16)                           NOT NULL
+  COMMENT '类型代码',
+  category_name VARCHAR(32)                           NOT NULL
+  COMMENT '类型名称',
+  length        INTEGER                               NOT NULL                DEFAULT 0
+  COMMENT '类型名称',
+  can_empty     TINYINT                               NOT NULL                DEFAULT 0
+  COMMENT '是否允许为空',
+  default_value VARCHAR(64)                           NOT NULL                DEFAULT ''
+  COMMENT '默认值',
+  is_deleted    TINYINT                               NOT NULL                DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time  TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time  TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '字典表';
+CREATE UNIQUE INDEX name_UNIQUE
+  ON dictionary (name);
+
+-- ----------------------------
+--  Table structure for category
+-- ----------------------------
+DROP TABLE
+IF EXISTS category;
+
+CREATE TABLE category
+(
+  id            BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  code          VARCHAR(16)                           NOT NULL
+  COMMENT '类型代码',
+  name          VARCHAR(32)                           NOT NULL
+  COMMENT '类型名称',
+  field         VARCHAR(32)                           NOT NULL                DEFAULT ''
+  COMMENT '字段名',
+  db            VARCHAR(16)                           NOT NULL                DEFAULT ''
+  COMMENT '所属数据库',
+  is_deleted    TINYINT                               NOT NULL                DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time  TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time  TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '类型表';
+CREATE UNIQUE INDEX name_UNIQUE
+  ON category (name);
+
 #====================初始数据====================#
 
 # 用户 admin
@@ -161,12 +250,14 @@ VALUES
   ('SYSTEM_MENU', '菜单管理', 'SYSTEM', 'system/menu', 2, ''),
 
   ('METADATA', '元数据', 'DASHBOARD', 'metadata', 2, 'menu-icon fa fa-book'),
-  ('METADATA_MANAGER', '元数据维护', 'METADATA', 'metadata/manager', 0, '');
+  ('METADATA_WORD', '字根管理', 'METADATA', 'metadata/word', 0, ''),
+  ('METADATA_DICTIONARY', '字典管理', 'METADATA', 'metadata/dictionary', 1, ''),
+  ('METADATA_CATEGORY', '类型管理', 'METADATA', 'metadata/category', 2, '');
 
-  -- ----------------------------
-  --  data for user_role
-  -- ----------------------------
-  INSERT INTO user_role
+-- ----------------------------
+--  data for user_role
+-- ----------------------------
+INSERT INTO user_role
 VALUES
   ('admin', 'ROLE_ADMIN');
 

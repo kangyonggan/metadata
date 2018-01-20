@@ -1,3 +1,0 @@
-$(function () {
-    updateState("metadata/manager");
-});
