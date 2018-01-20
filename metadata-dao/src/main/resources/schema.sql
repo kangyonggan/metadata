@@ -197,21 +197,21 @@ IF EXISTS category;
 
 CREATE TABLE category
 (
-  id            BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
   COMMENT '主键, 自增',
-  code          VARCHAR(16)                           NOT NULL
+  code         VARCHAR(16)                           NOT NULL
   COMMENT '类型代码',
-  name          VARCHAR(32)                           NOT NULL
+  name         VARCHAR(32)                           NOT NULL
   COMMENT '类型名称',
-  field         VARCHAR(32)                           NOT NULL                DEFAULT ''
+  field        VARCHAR(32)                           NOT NULL                DEFAULT ''
   COMMENT '字段名',
-  db            VARCHAR(16)                           NOT NULL                DEFAULT ''
+  db           VARCHAR(16)                           NOT NULL                DEFAULT ''
   COMMENT '所属数据库',
-  is_deleted    TINYINT                               NOT NULL                DEFAULT 0
+  is_deleted   TINYINT                               NOT NULL                DEFAULT 0
   COMMENT '逻辑删除:{0:未删除, 1:已删除}',
-  created_time  TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP
+  created_time TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  updated_time  TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  updated_time TIMESTAMP                             NOT NULL                DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   COMMENT '更新时间'
 )
   COMMENT '类型表';
@@ -268,3 +268,18 @@ INSERT INTO role_menu SELECT
                         'ROLE_ADMIN',
                         code
                       FROM menu;
+
+-- ----------------------------
+--  data for word
+-- ----------------------------
+INSERT INTO word
+(name, value)
+VALUES
+  ('用户', 'user'),
+  ('名称', 'name'),
+  ('姓名', 'name'),
+  ('密码', 'password'),
+  ('编号', 'no'),
+  ('号码', 'no'),
+  ('身份证', 'id'),
+  ('手机', 'phone');
