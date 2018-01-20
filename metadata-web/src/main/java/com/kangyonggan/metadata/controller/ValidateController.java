@@ -1,9 +1,6 @@
 package com.kangyonggan.metadata.controller;
 
-import com.kangyonggan.metadata.service.MenuService;
-import com.kangyonggan.metadata.service.RoleService;
-import com.kangyonggan.metadata.service.UserService;
-import com.kangyonggan.metadata.service.WordService;
+import com.kangyonggan.metadata.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +27,9 @@ public class ValidateController {
 
     @Autowired
     private WordService wordService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 校验用户名是否可用
@@ -102,6 +102,24 @@ public class ValidateController {
         }
 
         return !wordService.existsWordName(name);
+    }
+
+    /**
+     * 校验类型代码是否可用
+     *
+     * @param code
+     * @param oldCode
+     * @return
+     */
+    @RequestMapping(value = "category", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean validateCategoryCode(@RequestParam("code") String code,
+                                        @RequestParam(value = "oldCode", required = false, defaultValue = "") String oldCode) {
+        if (code.equals(oldCode)) {
+            return true;
+        }
+
+        return !categoryService.existsCategoryCode(code);
     }
 
 }

@@ -283,3 +283,19 @@ VALUES
   ('号码', 'no'),
   ('身份证', 'id'),
   ('手机', 'phone');
+
+-- ----------------------------
+--  data for category
+-- ----------------------------
+INSERT INTO category
+(code, name, field, db)
+VALUES
+  ('001', '可变字符型', 'VARCHAR', 'MySQL'),
+  ('002', '固定字符型', 'CHAR', 'MySQL'),
+  ('003', '小整型', 'TINYINT', 'MySQL'),
+  ('004', '整型', 'INTEGER', 'MySQL'),
+  ('005', '长整型', 'BIGINT', 'MySQL'),
+  ('006', '日期限', 'TIMESTAMP', 'MySQL'),
+  ('007', '大文本', 'LONGTEXT', 'MySQL');
+
+

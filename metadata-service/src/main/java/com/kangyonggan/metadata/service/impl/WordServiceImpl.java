@@ -1,6 +1,8 @@
 package com.kangyonggan.metadata.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.metadata.constants.AppConstants;
 import com.kangyonggan.metadata.model.Word;
 import com.kangyonggan.metadata.service.WordService;
 import com.kangyonggan.metadata.util.StringUtil;
@@ -32,6 +34,7 @@ public class WordServiceImpl extends BaseService<Word> implements WordService {
 
         example.setOrderByClause("id desc");
 
+        PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
         return myMapper.selectByExample(example);
     }
 
